@@ -1,0 +1,30 @@
+AUTHOR: Tyler Ziggas
+Date: April 2021
+
+The purpose of this project is to demonstrate resource management in an operating system and to take care of deadlock issues in this simulation.
+There will be shared memory components and the different processes will be logged and output to screen what exactly is going on.
+
+This project is invoked by the following commands:
+./oss (to run the project)
+
+There are no other parameters for this project, you can use control c to exit the project.
+NOTE: Since there is no necessary parameters, the logfile is just always going to write to "logfile", it is hardcoded into the project
+
+Our Suggested Implementation Steps:
+
+1) Start by creating a Makefile that compiles and builds the two executables: oss and user_proc. [1 day]
+
+2) Implement clock in shared memory; possibly reuse the one from last project. [1 day]
+
+3) Have oss create resource descriptors in shared memory and populate them with instances. [2 days]
+
+4) Create child processes; make them ask for resources and release acquired resources at random times. [4 days]
+
+5) Use shared memory or message queues to communicate requests, allocation, and release of resources. Indicate the
+primitive used in your README. [2 days]
+
+6) Implement deadlock detection and recovery algorithm. You are free to use the code that is given to you in the notes. [2
+days]
+
+7) Keep track of output statistics in log file.
+
