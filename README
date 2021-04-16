@@ -6,8 +6,9 @@ There will be shared memory components and the different processes will be logge
 
 This project is invoked by the following commands:
 ./oss (to run the project)
+-v (simply add -v after it and verbose logging will be turned on, nothing else is needed after it)
+-h (Small command that shows that -v exists)
 
-There are no other parameters for this project, you can use control c to exit the project.
 NOTE: Since there is no necessary parameters, the logfile is just always going to write to "logfile", it is hardcoded into the project
 
 Our Suggested Implementation Steps:

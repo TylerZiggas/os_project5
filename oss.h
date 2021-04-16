@@ -58,15 +58,15 @@ struct Queue{
 
 struct Queue* createQueue(int capacity);
 
-void clean_resources();
-void add_clock(struct time*, int, int);
-void oss_exit_signal(int);
-int get_free_slot_id();
-int allocate_resource(int, int);
-void try_release_resource(int, int);
-void run_simulation(int);
+void cleanResources();
+void addClock(struct time*, int, int);
+void exitSignal(int);
+int freeID();
+int allocateResource(int, int);
+void releaseResource(int, bool);
+void simulateOSS(bool);
 void deallocateResource(int, int);
-void add_time(struct time*, int, int);
+void addTime(struct time*, int, int);
 
 void createFile(char*);
 void logOutput(char*, char*, ...);

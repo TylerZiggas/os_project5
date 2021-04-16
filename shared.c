@@ -48,7 +48,7 @@ int convertMillis(int q) {
 
 }
 
-void add_time(struct time* time, int sec, int ns) {
+void addTime(struct time* time, int sec, int ns) {
         time->seconds += sec;
         time->nanoseconds += ns;
         while(time->nanoseconds >= 1000000000) {

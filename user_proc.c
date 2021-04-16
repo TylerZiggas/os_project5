@@ -58,19 +58,19 @@ int main(int argc, char *argv[]) {
 	struct time action_clock;
 	action_clock.seconds = shared->time.seconds;
 	action_clock.nanoseconds = shared->time.nanoseconds;
-	add_time(&action_clock, 0, interval);
+	addTime(&action_clock, 0, interval);
 	
 	int termination = (rand() % (250 * 1000000) + 1);
 	struct time should_terminate;
 	should_terminate.seconds = shared->time.seconds;
 	should_terminate.nanoseconds = shared->time.nanoseconds;
-	add_time(&should_terminate, 0, termination);
+	addTime(&should_terminate, 0, termination);
 
 	do {	
 		if((shared->time.seconds > action_clock.seconds) || (shared->time.seconds == action_clock.seconds && shared->time.nanoseconds >= action_clock.nanoseconds)) {
 			action_clock.seconds = shared->time.seconds;
 			action_clock.nanoseconds = shared->time.nanoseconds;
-			add_time(&action_clock, 0, interval);	
+			addTime(&action_clock, 0, interval);	
 	
 			if((rand() % 100) < REQUEST_RESOURCE) {	
 				strcpy(msgbuf.msg,"REQUEST");
@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
 			termination = (rand() % (250 * 1000000) + 1);
 			should_terminate.seconds = shared->time.seconds;
 			should_terminate.nanoseconds = shared->time.nanoseconds;
-			add_time(&should_terminate, 0, termination);
+			addTime(&should_terminate, 0, termination);
 			if((rand()%100) <= DIE){
 				strcpy(msgbuf.msg,"TERMINATED");
 				msgbuf.mtype = pid;
