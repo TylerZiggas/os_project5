@@ -1,15 +1,5 @@
 #include "oss.h"
 
-void add_time(struct time* time, int sec, int ns){
-	time->seconds += sec;
-	time->nanoseconds += ns;
-	while(time->nanoseconds >= 1000000000){
-		time->nanoseconds -=1000000000;
-		time->seconds++;
-	}
-}
-
-
 struct{
 	long mtype;
 	char msg[10];
@@ -19,12 +9,9 @@ int shmid;
 int toChild;
 int oss_q;
 
-
-
 const int RELEASE_OR_REQUEST = 1000000;
 const int REQUEST_RESOURCE = 70;
 const int DIE = 10;
-
 
 int main(int argc, char *argv[]){
 	time_t t;

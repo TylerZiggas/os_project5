@@ -59,13 +59,14 @@ struct Queue{
 struct Queue* createQueue(int capacity);
 
 void clean_resources();
-void add_clock(struct time* time, int sec, int ns);
-void oss_exit_signal(int sig);
+void add_clock(struct time*, int, int);
+void oss_exit_signal(int);
 int get_free_slot_id();
-int allocate_resource(int resourceId,int pid);
-void try_release_resource(int pid,int verbose);
-void run_simulation(int verbose);
-void deallocateResource(int resourceId, int pid);
+int allocate_resource(int, int);
+void try_release_resource(int, int);
+void run_simulation(int);
+void deallocateResource(int, int);
+void add_time(struct time*, int, int);
 
 void createFile(char*);
 void logOutput(char*, char*, ...);
@@ -73,17 +74,14 @@ int randomNumber(int, int);
 long int convertNano(int);
 int convertMillis(int);
 char* getFormattedTime();
-void sigact(int, void(int));
-void signalHandler(int);
-void setupTimer(const int t);
 
-int queueSize(struct Queue* queue);
-int full(struct Queue* queue);
-int empty(struct Queue* queue);
-void enqueue(struct Queue* queue,int controlBlock);
-int dequeue(struct Queue* queue);
-int front(struct Queue* queue);
-int back (struct Queue* queue);
+int queueSize(struct Queue*);
+int full(struct Queue*);
+int empty(struct Queue*);
+void enqueue(struct Queue*, int);
+int dequeue(struct Queue*);
+int front(struct Queue*);
+int back (struct Queue*);
 
 
 #endif

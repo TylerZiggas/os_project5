@@ -467,21 +467,3 @@ void clean_resources(){
 	shmdt((void*)shared);
 	shmctl(shmid, IPC_RMID, NULL);
 }
-
-
-
-
-
-/*int main (int argc, char* argv[]) {
-	int timerSec = 5;
-	char* logfile = "logfile";
-	createFile(logfile);
-	pid_t parentID = getpid();
-	sigact(SIGINT, signalHandler);
-	setupTimer(timerSec);
-	logOutput(logfile, "This is a test %s", getFormattedTime());
-	
-	sleep(100);
-	
-	return 0;
-}*/
