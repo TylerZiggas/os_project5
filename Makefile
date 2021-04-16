@@ -25,4 +25,4 @@ $(USER): $(USER_OBJ)
 .PHONY: clean
 
 clean:
-	rm -f *.o $(OUTPUT) *.dat logfile
+	rm -f *.o $(OUTPUT) *.txt *.dat logfile

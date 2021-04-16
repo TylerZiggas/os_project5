@@ -100,3 +100,49 @@ void setupTimer(const int t) { // Creation of the timer
 		exit(EXIT_FAILURE);
 	}
 }
+
+// Queue Block //
+
+struct Queue* createQueue(int capacity){
+	struct Queue* queue = (struct Queue*) malloc(sizeof(struct Queue));	
+	queue->capacity = capacity;
+	queue->front = queue->size = 0;
+	queue->rear = capacity - 1;
+	queue->array = (int*)malloc(queue->capacity*sizeof(int));
+	return queue;
+}
+
+int full(struct Queue* queue){
+	if(queue->size == queue->capacity){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+int empty(struct Queue* queue){
+	return(queue->size == 0);
+}
+
+int queueSize(struct Queue* queue){
+	return queue->size;
+}
+
+void enqueue(struct Queue* queue, int id){
+	if(full(queue) == 1){return;}
+	queue->rear = (queue->rear + 1)%queue->capacity;
+	queue->array[queue->rear] = id;
+	queue->size = queue->size + 1;
+
+}
+
+int dequeue(struct Queue* queue){
+	if(empty(queue)){return INT_MIN;}
+
+	int id = queue->array[queue->front];
+	queue->front = (queue->front + 1) % queue->capacity;
+	queue->size = queue->size - 1;
+	return id;
+}
+
+// Queue Block //
