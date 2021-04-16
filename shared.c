@@ -37,18 +37,18 @@ int randomNumber(int min, int max) { // Function for creating random numbers
 	return rand()%(max - min) + min;
 }
 
-long int convertNano(int q){ // Function for converting to nanoseconds so we can print
+long int convertNano(int q) { // Function for converting to nanoseconds so we can print
 	return q * 1000000000;
 
 }
 
-int convertMillis(int q){
+int convertMillis(int q) {
 
     return q / 1000000;
 
 }
 
-void add_time(struct time* time, int sec, int ns){
+void add_time(struct time* time, int sec, int ns) {
         time->seconds += sec;
         time->nanoseconds += ns;
         while(time->nanoseconds >= 1000000000) {
@@ -66,7 +66,7 @@ char* getFormattedTime() { // Creation of formatted time, mostly for log file
 
 // Queue Block //
 
-struct Queue* createQueue(int capacity){
+struct Queue* createQueue(int capacity) {
 	struct Queue* queue = (struct Queue*) malloc(sizeof(struct Queue));	
 	queue->capacity = capacity;
 	queue->front = queue->size = 0;
@@ -75,32 +75,37 @@ struct Queue* createQueue(int capacity){
 	return queue;
 }
 
-int full(struct Queue* queue){
-	if(queue->size == queue->capacity){
+int full(struct Queue* queue) {
+	if(queue->size == queue->capacity) {
 		return 1;
-	}else{
+	} else {
 		return 0;
 	}
 }
 
-int empty(struct Queue* queue){
+int empty(struct Queue* queue) {
 	return(queue->size == 0);
 }
 
-int queueSize(struct Queue* queue){
+int queueSize(struct Queue* queue) {
 	return queue->size;
 }
 
-void enqueue(struct Queue* queue, int id){
-	if(full(queue) == 1){return;}
+void enqueue(struct Queue* queue, int id) {
+	if(full(queue) == 1) {
+		return;
+	}
+
 	queue->rear = (queue->rear + 1)%queue->capacity;
 	queue->array[queue->rear] = id;
 	queue->size = queue->size + 1;
 
 }
 
-int dequeue(struct Queue* queue){
-	if(empty(queue)){return INT_MIN;}
+int dequeue(struct Queue* queue) {
+	if(empty(queue)) { 
+		return INT_MIN;
+	}
 
 	int id = queue->array[queue->front];
 	queue->front = (queue->front + 1) % queue->capacity;
