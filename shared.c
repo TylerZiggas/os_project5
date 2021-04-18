@@ -42,16 +42,14 @@ long int convertNano(int q) { // Function for converting to nanoseconds so we ca
 
 }
 
-int convertMillis(int q) {
-
+int convertMillis(int q) { // FUnction for converting to milliseconds so we can print
     return q / 1000000;
-
 }
 
-void addTime(struct time* time, int sec, int ns) {
-        time->seconds += sec;
-        time->nanoseconds += ns;
-        while(time->nanoseconds >= 1000000000) {
+void addTime(struct time* time, int seconds, int nanoseconds) { // Adding to the time
+        time->seconds += seconds;
+        time->nanoseconds += nanoseconds;
+        while(time->nanoseconds >= 1000000000) { // Checking to correct the time from nanoseconds to secounds
                 time->nanoseconds -=1000000000;
                 time->seconds++;
         }
@@ -66,8 +64,8 @@ char* getFormattedTime() { // Creation of formatted time, mostly for log file
 
 // Queue Block //
 
-struct Queue* createQueue(int capacity) {
-	struct Queue* queue = (struct Queue*) malloc(sizeof(struct Queue));	
+struct Queue* createQueue(int capacity) { // Creation of queues
+	struct Queue* queue = (struct Queue*) malloc(sizeof(struct Queue)); // Allocate the queue
 	queue->capacity = capacity;
 	queue->front = queue->size = 0;
 	queue->rear = capacity - 1;
@@ -75,41 +73,41 @@ struct Queue* createQueue(int capacity) {
 	return queue;
 }
 
-int full(struct Queue* queue) {
-	if(queue->size == queue->capacity) {
+int full(struct Queue* queue) { // Checking to see if the queue is full
+	if(queue->size == queue->capacity) { // if the queue is full
 		return 1;
-	} else {
+	} else { // if the queue is empty
 		return 0;
 	}
 }
 
-int empty(struct Queue* queue) {
+int empty(struct Queue* queue) { // check if the queue is empty
 	return(queue->size == 0);
 }
 
-int queueSize(struct Queue* queue) {
+int queueSize(struct Queue* queue) { // check the size of the queue
 	return queue->size;
 }
 
-void enqueue(struct Queue* queue, int id) {
+void enqueue(struct Queue* queue, int id) { // Putting into the queue
 	if(full(queue) == 1) {
 		return;
 	}
 
 	queue->rear = (queue->rear + 1)%queue->capacity;
 	queue->array[queue->rear] = id;
-	queue->size = queue->size + 1;
+	queue->size = queue->size + 1; // Increase the size of queue
 
 }
 
-int dequeue(struct Queue* queue) {
+int dequeue(struct Queue* queue) { // removing from the queue
 	if(empty(queue)) { 
 		return INT_MIN;
 	}
 
-	int id = queue->array[queue->front];
+	int id = queue->array[queue->front]; 
 	queue->front = (queue->front + 1) % queue->capacity;
-	queue->size = queue->size - 1;
+	queue->size = queue->size - 1; // Decrease the size of queue
 	return id;
 }
 

@@ -30,12 +30,12 @@
 #define FORMATTED_TIME_SIZE 50
 #define FORMATTED_TIME_FORMAT "%H:%M:%S"
 
-struct time{
+struct time { // Struct for keeping time
 	int nanoseconds;
 	int seconds;
 };
 
-struct resource_descriptor{
+struct resDescriptor {
 	int request[18];
 	int release[18];
 	int allocated[18];
@@ -44,13 +44,12 @@ struct resource_descriptor{
 	int available;
 };
 
-
-struct sharedRes{
-	struct resource_descriptor resources[20];
+struct sharedRes { // Resources
+	struct resDescriptor resources[20];
 	struct time time;
 };
 
-struct Queue{
+struct Queue {
 	int front,rear,size;
 	int capacity;
 	int *array;
@@ -58,23 +57,24 @@ struct Queue{
 
 struct Queue* createQueue(int capacity);
 
-void cleanResources();
+// oss and user_proc functions
+void simulateOSS(bool);
 void addClock(struct time*, int, int);
-void exitSignal(int);
 int freeID();
+void cleanResources();
 int allocateResource(int, int);
 void releaseResource(int, bool);
-void simulateOSS(bool);
 void deallocateResource(int, int);
 void addTime(struct time*, int, int);
+void exitSignal(int);
 
+// Shared.c functions including logging and queues
 void createFile(char*);
 void logOutput(char*, char*, ...);
 int randomNumber(int, int);
 long int convertNano(int);
 int convertMillis(int);
 char* getFormattedTime();
-
 int queueSize(struct Queue*);
 int full(struct Queue*);
 int empty(struct Queue*);
