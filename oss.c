@@ -323,7 +323,8 @@ void simulateOSS(bool verbose) {
 			logOutput(logfile, "\n");
 			logTable = 0;
 		}
-	} while(1); // Want to stay in this loop until we are done
+	} while((proTerminated + proExited) < 40); // Want to stay in this loop until we are done
+	exitSignal(0);	
 }
 
 void releaseResource(int pid , bool verbose) { // Releasing our resources
@@ -404,6 +405,8 @@ void exitSignal(int sig) { // If one of our signals happens
 		case SIGINT: // Print in case of a control c
 			printf("\nSimulation finished on control+c.\n");
 			break;
+		default: 
+			break;
 	}
 	// Print our summary and totals of what happened during our run
 	logOutput(logfile, "\n|                                             Summary                                                            |\n");
@@ -414,6 +417,7 @@ void exitSignal(int sig) { // If one of our signals happens
 	logOutput(logfile, "Total processes terminated from deadlock: %d\n", proTerminated);
 	logOutput(logfile, "Total processes terminated normally: %d\n", proExited);
 
+	printf("\nSummary\n");
 	printf("Total Requests Granted: %d\n", reqGranted);
 	printf("Total processes terminated from deadlock: %d\n", proTerminated);
 	printf("Total processes terminated normally: %d\n", proExited);
