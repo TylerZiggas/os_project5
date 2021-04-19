@@ -11,7 +11,7 @@ This project is invoked by the following commands:
 
 NOTE: Since there is no necessary parameters, the logfile is just always going to write to "logfile", it is hardcoded into the project
 
-Our Suggested Implementation Steps:
+Our Suggested Implementation Steps: 
 
 1) Start by creating a Makefile that compiles and builds the two executables: oss and user_proc. [1 day]
 
